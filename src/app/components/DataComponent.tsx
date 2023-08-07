@@ -59,7 +59,7 @@ const DataComponent: React.FC<DataProps>  = ( {children} ) => {
     <div className="w-full h-full bg-white flex flex-col items-center p-2">
       <div className="flex flex-row w-full flex-wrap justify-around border-slate-300 m-3">
         <input
-          className="w-full sm:w-36 border-2 border-slate-300 mb-2 sm:mb-0"
+          className="w-full sm:w-36 border-2 border-slate-300 mb-2 sm:mb-0 rounded-lg"
           type="text"
           name="empresa"
           value={data.empresa}
@@ -67,7 +67,7 @@ const DataComponent: React.FC<DataProps>  = ( {children} ) => {
           placeholder="Empresa"
         />
         <input
-          className="w-full sm:w-28 border-2 border-slate-300 mb-2 sm:mb-0"
+          className="w-full sm:w-28 border-2 border-slate-300 mb-2 sm:mb-0 rounded-lg"
           type="text"
           name="rol"
           value={data.rol}
@@ -75,7 +75,7 @@ const DataComponent: React.FC<DataProps>  = ( {children} ) => {
           placeholder="Rol"
         />
         <input
-          className="w-full sm:w-28 border-2 border-slate-300 mb-2 sm:mb-0"
+          className="w-full sm:w-28 border-2 border-slate-300 mb-2 sm:mb-0 rounded-lg"
           type="text"
           name="fecha"
           value={data.fecha}
@@ -83,7 +83,7 @@ const DataComponent: React.FC<DataProps>  = ( {children} ) => {
           placeholder="Fecha"
         />
         <input
-          className="w-full sm:w-28 border-2 border-slate-300 mb-2 sm:mb-0"
+          className="w-full sm:w-28 border-2 border-slate-300 mb-2 sm:mb-0 rounded-lg"
           type="text"
           name="proceso"
           value={data.proceso}
@@ -91,7 +91,7 @@ const DataComponent: React.FC<DataProps>  = ( {children} ) => {
           placeholder="Etapa del proceso"
         />
         <input
-          className="w-full sm:w-28 border-2 space-x-80"
+          className="w-full sm:w-28 border-2 space-x-80 rounded-lg"
           type="url"
           name="link"
           value={data.link}
@@ -99,7 +99,7 @@ const DataComponent: React.FC<DataProps>  = ( {children} ) => {
           placeholder="Link"
         />
       </div>
-      <button onClick={handleEnviar} className="bg-orange-500 w-24 h-12">
+      <button onClick={handleEnviar} className="bg-blue-200 w-24 h-12 rounded-lg hover:bg-blue-500 hover:text-white">
         Enviar
       </button>
       {/* Aquí agrega más campos de input para las otras propiedades del objeto */}

@@ -35,7 +35,7 @@ export const DataContext = createContext<ChildrenData[] | null>(null);
 
 const Page: React.FC = () => {
   const [data, setData] = useState<ChildrenData[] | null>(null);
-
+  const [isActive, setIsActive] = useState(false);
   const [openModal, setOpenModal] = useState(false);
   const [actualization, setActualization] = useState(false);
 
@@ -48,7 +48,12 @@ const Page: React.FC = () => {
 
   function onchange() {
     setOpenModal(!openModal);
+    setIsActive(!isActive);
+
   }
+  const buttonClasses = isActive
+    ? 'w-12 h-12 text-2xl fa-regular fa-square-plus text-slate-600 focus:outline-none focus:text-slate-600'
+    : 'w-12 h-12 text-2xl fa-regular fa-square-plus text-blue-500 focus:outline-none focus:text-blue-500';
 
   return (
     <div className="min-h-screen p-10 bg-mi-color	 	 flex justify-center">
@@ -65,10 +70,8 @@ const Page: React.FC = () => {
                 children={{ ...item, actualization, setActualization }}
               />
             ))}
-          <button
-            className="w-12 h-12 text-2xl fa-regular fa-square-plus"
-            onClick={onchange}
-          ></button>
+           <button className={buttonClasses} onClick={onchange}>
+    </button>
           {openModal && (
             <DataComponent children={{ setActualization, actualization }} />
           )}

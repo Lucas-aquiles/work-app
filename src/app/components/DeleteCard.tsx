@@ -45,7 +45,7 @@ useEffect(() => {
     return (
       <div className=" w-1/5 sm:w-1/6 md:w-1/5 lg:w-1/4 text-sm sm:text-base md:text-sm lg:text-base">
        <button
-              className=" w-20 m-5 text-2xl fa-regular fa-trash-can" onClick={onChangeDelete}
+              className=" w-20 m-5 text-2xl fa-regular fa-trash-can hover:text-red-500" onClick={onChangeDelete}
               
             ></button>
       </div>
