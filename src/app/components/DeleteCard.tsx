@@ -1,7 +1,7 @@
 "use client"
 import React, { useContext, useState, useEffect } from "react";
 import "@fortawesome/fontawesome-free/css/all.min.css";
-import { DataContext } from "../page";
+import { DataContext } from "../context/DataContext";
 
 interface CardProps {
   
@@ -10,7 +10,7 @@ interface CardProps {
     fecha: any;
     proceso: string;
     link: string;
-    delete: any;
+    eliminar?: any;
     actualization: boolean;
     setActualization: (value: boolean) => void;
   

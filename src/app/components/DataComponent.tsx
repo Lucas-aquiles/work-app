@@ -1,6 +1,6 @@
 "use client";
 import { useState, ChangeEvent, useContext, useEffect } from "react";
-import { DataContext } from "../page";
+import { DataContext } from "../context/DataContext";
 
 interface ChildrenData {
   empresa: string;

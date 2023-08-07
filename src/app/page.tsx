@@ -3,6 +3,7 @@ import React, { useState, useEffect, createContext } from 'react';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import Card from './components/Card';
 import DataComponent from './components/DataComponent';
+import { DataContext } from './context/DataContext';
 
 const titles = {
   empresa: "Empresa",
@@ -10,7 +11,7 @@ const titles = {
   fecha: "Fecha",
   proceso: "Etapa del proceso",
   link: "Link",
-  delete:"Eliminar",
+  eliminar:"Eliminar",
  
 
 };
@@ -21,24 +22,15 @@ interface ChildrenData {
   fecha: string;
   proceso: string;
   link: string;
-  delete:any,
-  actualization: boolean;
-  setActualization: (value: boolean) => void;
+  eliminar?:string;
+  actualization?: boolean;
+  setActualization?: (value: boolean) => void;
   
   
 }
-interface ContextData {
-  empresa: string;
-  rol: string;
-  fecha: string;
-  proceso: string;
-  link: string;
-  
-}
 
 
 
-export const DataContext = createContext<ContextData[] | null>(null);
 
 const Page: React.FC = () => {
   const [data, setData] = useState<ChildrenData[] | null>(null);
@@ -75,8 +67,9 @@ const Page: React.FC = () => {
         fecha={titles.fecha}
         proceso={titles.proceso}
         link={titles.link}
-        delete={titles.delete}
-        
+        eliminar={titles.eliminar}
+        actualization={actualization}
+        setActualization={setActualization}
       />
 
           {data &&
@@ -88,7 +81,6 @@ const Page: React.FC = () => {
               fecha={item.fecha}
               proceso={item.proceso}
               link={item.link}
-              delete={item.delete}
               actualization={actualization}
               setActualization={setActualization}
               />

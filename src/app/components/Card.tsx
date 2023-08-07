@@ -8,7 +8,7 @@ interface CardProps  {
     fecha: any;
     proceso: string;
     link: string;
-    delete:any;
+    eliminar?:string;
     actualization: boolean|any;
     setActualization: (value: boolean) => void|any;
   };
@@ -21,7 +21,7 @@ const Card: React.FC<CardProps> =  (props) =>{
     fecha,
     proceso,
     link,
-    delete: deleteProp,
+    eliminar,
     actualization,
     setActualization
   }=props;
@@ -44,8 +44,8 @@ const Card: React.FC<CardProps> =  (props) =>{
         <h2 className=" font-medium overflow-x-auto w-1/4 sm:w-1/6 md:w-1/5 lg:w-1/4 text-sm sm:text-base md:text-sm lg:text-base cursor-pointer">
           {link}
         </h2>
-        {  deleteProp ? <h2 className=" font-medium w-1/6  pl-8 sm:w-1/6 md:w-1/5 lg:w-1/4 text-sm sm:text-base md:text-sm lg:text-base">
-          {deleteProp}
+        {  eliminar ? <h2 className=" font-medium w-1/6  pl-8 sm:w-1/6 md:w-1/5 lg:w-1/4 text-sm sm:text-base md:text-sm lg:text-base">
+          {eliminar}
         </h2>: <DeleteCard 
         empresa={empresa}
         rol={rol}
