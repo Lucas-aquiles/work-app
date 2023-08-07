@@ -1,44 +1,59 @@
+"use client"
 import React  from "react";
 import DeleteCard from "./DeleteCard";
 
-interface CardProps {
-  children: {
+interface CardProps  {
     empresa: string;
     rol: string;
     fecha: any;
     proceso: string;
     link: string;
     delete:any;
-    actualization: boolean;
-    setActualization: any
-    
+    actualization: boolean|any;
+    setActualization: (value: boolean) => void|any;
   };
-}
 
-const Card: React.FC<CardProps> = ({ children }) => {
+
+const Card: React.FC<CardProps> =  (props) =>{ 
+  const {
+    empresa,
+    rol,
+    fecha,
+    proceso,
+    link,
+    delete: deleteProp,
+    actualization,
+    setActualization
+  }=props;
+
   
     return (
       <div className="h-12 w-full bg-slate-50 rounded-xl	  flex flex-row m-2 justify-around items-center text-palabra">
         <h2 className=" font-medium	 w-1/5 sm:w-1/6 md:w-1/5 lg:w-1/4 text-sm sm:text-base md:text-sm lg:text-base pl-5">
-          {children.empresa}
+          {empresa}
         </h2>
         <h2 className=" font-medium w-1/5 sm:w-1/6 md:w-1/5 lg:w-1/4 text-sm sm:text-base md:text-sm lg:text-base ">
-          {children.rol}
+          {rol}
         </h2>
         <h2 className=" font-medium w-1/5 sm:w-1/6 md:w-1/5 lg:w-1/4 text-sm sm:text-base md:text-sm lg:text-base">
-          {children.fecha}
+          {fecha}
         </h2>
         <h2 className="font-medium w-1/5 sm:w-1/6 md:w-1/5 lg:w-1/4 text-sm sm:text-base md:text-sm lg:text-base">
-          {children.proceso}
+          {proceso}
         </h2>
         <h2 className=" font-medium overflow-x-auto w-1/4 sm:w-1/6 md:w-1/5 lg:w-1/4 text-sm sm:text-base md:text-sm lg:text-base cursor-pointer">
-          {children.link}
+          {link}
         </h2>
-        {  children.delete ? <h2 className=" font-medium w-1/6  pl-8 sm:w-1/6 md:w-1/5 lg:w-1/4 text-sm sm:text-base md:text-sm lg:text-base">
-          {children.delete}
+        {  deleteProp ? <h2 className=" font-medium w-1/6  pl-8 sm:w-1/6 md:w-1/5 lg:w-1/4 text-sm sm:text-base md:text-sm lg:text-base">
+          {deleteProp}
         </h2>: <DeleteCard 
-        
-      children={children}
+        empresa={empresa}
+        rol={rol}
+        fecha={fecha}
+        proceso={proceso}
+        link={link}
+        actualization={actualization}
+        setActualization={setActualization}
         />
         
         }

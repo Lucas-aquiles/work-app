@@ -1,5 +1,5 @@
 "use client"
-import React, { useState, useEffect, createContext, Dispatch, SetStateAction } from 'react';
+import React, { useState, useEffect, createContext } from 'react';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import Card from './components/Card';
 import DataComponent from './components/DataComponent';
@@ -11,8 +11,7 @@ const titles = {
   proceso: "Etapa del proceso",
   link: "Link",
   delete:"Eliminar",
-  actualization: false,
-  setActualization: ""
+ 
 
 };
 
@@ -24,14 +23,22 @@ interface ChildrenData {
   link: string;
   delete:any,
   actualization: boolean;
-  setActualization: any;
+  setActualization: (value: boolean) => void;
   
+  
+}
+interface ContextData {
+  empresa: string;
+  rol: string;
+  fecha: string;
+  proceso: string;
+  link: string;
   
 }
 
 
 
-export const DataContext = createContext<ChildrenData[] | null>(null);
+export const DataContext = createContext<ContextData[] | null>(null);
 
 const Page: React.FC = () => {
   const [data, setData] = useState<ChildrenData[] | null>(null);
@@ -62,18 +69,38 @@ const Page: React.FC = () => {
       <h2 className="text-4xl mb-4 text-blue-700 font-medium">Dashboard</h2>
       <div className="w-full flex flex-col items-center">
         <DataContext.Provider value={data}>
-          <Card children={titles} />
+        <Card
+        empresa={titles.empresa}
+        rol={titles.rol}
+        fecha={titles.fecha}
+        proceso={titles.proceso}
+        link={titles.link}
+        delete={titles.delete}
+        
+      />
+
           {data &&
             data.map((item) => (
               <Card
-                key={item.link}
-                children={{ ...item, actualization, setActualization }}
+              key={item.link}
+              empresa={item.empresa}
+              rol={item.rol}
+              fecha={item.fecha}
+              proceso={item.proceso}
+              link={item.link}
+              delete={item.delete}
+              actualization={actualization}
+              setActualization={setActualization}
               />
             ))}
            <button className={buttonClasses} onClick={onchange}>
     </button>
           {openModal && (
-            <DataComponent children={{ setActualization, actualization }} />
+            <DataComponent  
+
+            actualization={actualization}
+            setActualization={setActualization}            
+            />
           )}
         </DataContext.Provider>
       </div>

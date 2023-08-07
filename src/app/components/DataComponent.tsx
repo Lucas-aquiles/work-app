@@ -10,10 +10,20 @@ interface ChildrenData {
   link: string;
 }
 interface DataProps {
-  children: any; // Corregir el tipo de la prop "children"
+  
+    actualization: boolean;
+    setActualization: (value: boolean) => void;
+  
 }
 
-const DataComponent: React.FC<DataProps>  = ( {children} ) => {
+const DataComponent: React.FC<DataProps>  =  (props) =>{ 
+  const {
+    actualization,
+    setActualization
+  }=props;
+
+
+
   const initialState: ChildrenData = {
     empresa: "",
     rol: "",
@@ -44,11 +54,11 @@ const DataComponent: React.FC<DataProps>  = ( {children} ) => {
     if(data.empresa){ 
     if (dataGeneral === null) {
       localStorage.setItem("myData", JSON.stringify([data]));
-      children.setActualization(!children.actualization)
+      setActualization(!actualization)
       
     } else {
       setAuxData((prevData) => [...prevData, data]);
-      children.setActualization(!children.actualization)
+      setActualization(!actualization)
     }
 
     setData(initialState);
