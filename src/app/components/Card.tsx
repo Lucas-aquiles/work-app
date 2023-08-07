@@ -42,7 +42,7 @@ const Card: React.FC<CardProps> =  (props) =>{
           {proceso}
         </h2>
         <h2 className=" font-medium overflow-x-auto w-1/4 sm:w-1/6 md:w-1/5 lg:w-1/4 text-sm sm:text-base md:text-sm lg:text-base cursor-pointer">
-          {link}
+         <a href="url" target="_blank"> {link} </a> 
         </h2>
         {  eliminar ? <h2 className=" font-medium w-1/6  pl-8 sm:w-1/6 md:w-1/5 lg:w-1/4 text-sm sm:text-base md:text-sm lg:text-base">
           {eliminar}
