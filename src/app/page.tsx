@@ -51,8 +51,8 @@ const Page: React.FC = () => {
 
   }
   const buttonClasses = isActive
-    ? 'w-12 h-12 text-2xl fa-regular fa-square-plus text-slate-600 focus:outline-none focus:text-slate-600'
-    : 'w-12 h-12 text-2xl fa-regular fa-square-plus text-blue-500 focus:outline-none focus:text-blue-500';
+    ? 'font-semibold w-12 h-12 text-3xl fa-regular fa-square-plus text-orange-400 focus:outline-none focus:text-orange-400'
+    : 'font-semibold w-12 h-12 text-3xl fa-regular fa-square-plus text-blue-500 focus:outline-none focus:text-blue-500';
 
   return (
     <div className="min-h-screen p-10 bg-mi-color	 	 flex justify-center">

@@ -10,38 +10,37 @@ interface ChildrenData {
   link: string;
 }
 interface DataProps {
-  
-    actualization: boolean;
-    setActualization: (value: boolean) => void;
-  
+  actualization: boolean;
+  setActualization: (value: boolean) => void;
 }
 
-const DataComponent: React.FC<DataProps>  =  (props) =>{ 
-  const {
-    actualization,
-    setActualization
-  }=props;
-
-
+const DataComponent: React.FC<DataProps> = (props) => {
+  const { actualization, setActualization } = props;
 
   const initialState: ChildrenData = {
     empresa: "",
     rol: "",
     fecha: "",
     proceso: "",
-    link: ""
+    link: "",
   };
 
   const dataGeneral = useContext(DataContext);
 
   const [auxData, setAuxData] = useState<ChildrenData[]>(dataGeneral || []); // Inicializar con un array vacío si dataGeneral es null
   const [data, setData] = useState<ChildrenData>(initialState);
-
   useEffect(() => {
     localStorage.setItem("myData", JSON.stringify(auxData));
   }, [auxData]);
+  useEffect(() => {
+    if (dataGeneral) {
+      setAuxData(dataGeneral);
+    }
+  }, [dataGeneral]);
 
-  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (
+    event: ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => {
     const { name, value } = event.target;
     setData((prevData) => ({
       ...prevData,
@@ -49,20 +48,22 @@ const DataComponent: React.FC<DataProps>  =  (props) =>{
     }));
   };
 
-  const handleEnviar = ():void => {
+  const handleEnviar = (): void => {
+    if (data.empresa && data.link && data.rol) {
+      if (dataGeneral === null) {
+        localStorage.setItem("myData", JSON.stringify([data]));
+        setActualization(!actualization);
+      } else {
+        const result = dataGeneral?.filter((e) => e.link !== data.link);
 
-    if(data.empresa){ 
-    if (dataGeneral === null) {
-      localStorage.setItem("myData", JSON.stringify([data]));
-      setActualization(!actualization)
-      
-    } else {
-      setAuxData((prevData) => [...prevData, data]);
-      setActualization(!actualization)
+        setAuxData(() => [...result, data]);
+        setActualization(!actualization);
+
+
+      }
+
+      setData(initialState);
     }
-
-    setData(initialState);
-  }
   };
 
   return (
@@ -85,21 +86,27 @@ const DataComponent: React.FC<DataProps>  =  (props) =>{
           placeholder="Rol"
         />
         <input
-          className="w-full sm:w-28 border-2 border-slate-300 mb-2 sm:mb-0 rounded-lg"
-          type="text"
+          className="w-full sm:w-32 border-2 border-slate-300 mb-2 sm:mb-0 rounded-lg"
+          type="date"
           name="fecha"
           value={data.fecha}
           onChange={handleChange}
           placeholder="Fecha"
         />
-        <input
-          className="w-full sm:w-28 border-2 border-slate-300 mb-2 sm:mb-0 rounded-lg"
-          type="text"
-          name="proceso"
+
+        <select
           value={data.proceso}
           onChange={handleChange}
-          placeholder="Etapa del proceso"
-        />
+          name="proceso"
+          className="w-full sm:w-28 border-2 border-slate-300 mb-2 sm:mb-0 rounded-lg"
+          
+        >
+          <option value="">Proceso</option>
+          <option value="Inicio">Inicio</option>
+          <option value="Intermedio">Intermedio</option>
+          <option value="Avanzado">Avanzado</option>
+        </select>
+
         <input
           className="w-full sm:w-28 border-2 space-x-80 rounded-lg"
           type="url"
@@ -109,12 +116,13 @@ const DataComponent: React.FC<DataProps>  =  (props) =>{
           placeholder="Link"
         />
       </div>
-      <button onClick={handleEnviar} className="bg-blue-200 w-24 h-12 rounded-lg hover:bg-blue-500 hover:text-white">
+      <button
+        onClick={handleEnviar}
+        className="bg-blue-200 w-24 h-12 rounded-lg hover:bg-blue-500 hover:text-white"
+      >
         Enviar
       </button>
-      {/* Aquí agrega más campos de input para las otras propiedades del objeto */}
     </div>
-    
   );
 };
 
