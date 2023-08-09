@@ -50,11 +50,18 @@ const Card: React.FC<CardProps> = (props) => {
       <h2 className={`font-medium w-1/5 sm:w-1/6 md:w-1/5 lg:w-1/4 text-sm sm:text-base md:text-sm lg:text-base ${procesoStyleClass}`}>
     {proceso}
   </h2>
+      { link === "Link"?
+       <h2 className=" pl-10 font-medium overflow-x-auto w-1/4 sm:w-1/6 md:w-1/5 lg:w-1/4 text-sm sm:text-base md:text-sm lg:text-base ">
+          {link}
+      </h2>
+        : 
       <h2 className=" font-medium overflow-x-auto w-1/4 sm:w-1/6 md:w-1/5 lg:w-1/4 text-sm sm:text-base md:text-sm lg:text-base cursor-pointer">
         <a href={`https://${link}`} target="_blank">
           {link}
         </a>
-      </h2>
+      </h2>}
+
+
       {eliminar ? (
         <h2 className=" font-medium w-1/6  pl-8 sm:w-1/6 md:w-1/5 lg:w-1/4 text-sm sm:text-base md:text-sm lg:text-base">
           {eliminar}
